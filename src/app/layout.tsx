@@ -3,8 +3,8 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Based Gene",
-  description: "Bringing onchain closer",
+  title: "Morph Canvas",
+  description: "Generate morphing backgrounds",
 };
 
 export default function RootLayout({

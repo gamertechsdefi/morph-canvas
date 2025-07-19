@@ -240,7 +240,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={loading || backgrounds.length === 0 || !selectedImage}
-                  className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-[#66D4FF] transition-colors disabled:opacity-50"
+                  className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-300 transition-colors disabled:opacity-50"
                 >
                   {loading ? "Processing..." : "Update Background"}
                 </button>
@@ -280,7 +280,7 @@ export default function Home() {
                         <button
                           onClick={handleTint}
                           disabled={loading}
-                          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-[#66D4FF] transition-colors disabled:opacity-50"
+                          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-300 transition-colors disabled:opacity-50"
                         >
                           {loading ? "Processing..." : "Apply Base Tint"}
                         </button>
