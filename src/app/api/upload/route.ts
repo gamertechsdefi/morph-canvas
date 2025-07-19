@@ -13,14 +13,19 @@ const getHeaders = (apiKey?: string): HeadersInit => {
   return apiKey ? { "X-API-Key": apiKey } : {};
 };
 
-// API configuration interface
-interface ApiConfig {
+// Type for WithoutBG API response
+interface WithoutBgResponse {
+  result: string;
+}
+
+// Generic API configuration interface
+interface ApiConfig<T = Buffer> {
   name: string;
   url: string;
   headers: HeadersInit;
-  formData: (buffer: Buffer) => Promise<FormData | string>;
+  formData: (buffer: Buffer) => Promise<FormData | string | URLSearchParams>;
   isJson?: boolean;
-  processResponse?: (data: any) => Buffer;
+  processResponse?: (data: T) => Buffer;
 }
 
 // Function to remove background using multiple APIs
@@ -98,10 +103,17 @@ async function removeBackground(fileBuffer: Buffer): Promise<Buffer> {
     try {
       console.log(`Attempting ${api.name} API...`);
       const body = await api.formData(fileBuffer);
+      // Type-safe narrowing for fetch body
+      let fetchBody: string | URLSearchParams | FormData;
+      if (typeof body === "string" || body instanceof URLSearchParams || (typeof FormData !== 'undefined' && body instanceof FormData)) {
+        fetchBody = body;
+      } else {
+        throw new Error("Unsupported body type for fetch");
+      }
       const response = await fetch(api.url, {
         method: "POST",
         headers: api.headers,
-        body: body as BodyInit,
+        body: fetchBody,
       });
 
       if (!response.ok) throw new Error(`${api.name} API failed: ${response.statusText}`);

@@ -18,9 +18,9 @@ export async function POST(request: NextRequest) {
     // Apply tint
     image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
       if (this.bitmap.data[idx + 3] > 0) {
-        let r = this.bitmap.data[idx + 0];
-        let g = this.bitmap.data[idx + 1];
-        let b = this.bitmap.data[idx + 2];
+        const r = this.bitmap.data[idx + 0];
+        const g = this.bitmap.data[idx + 1];
+        const b = this.bitmap.data[idx + 2];
 
         const tintColor = { r: 102, g: 212, b: 255 };
         const tintFactor = 0.2;
