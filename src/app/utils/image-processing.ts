@@ -22,9 +22,9 @@ export async function applyTint(
   
   image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
     if (this.bitmap.data[idx + 3] > 0) {
-      let r = this.bitmap.data[idx + 0];
-      let g = this.bitmap.data[idx + 1];
-      let b = this.bitmap.data[idx + 2];
+      const r = this.bitmap.data[idx + 0];
+      const g = this.bitmap.data[idx + 1];
+      const b = this.bitmap.data[idx + 2];
 
       this.bitmap.data[idx + 0] = Math.round(r * (1 - tintFactor) + tintColor.r * tintFactor);
       this.bitmap.data[idx + 1] = Math.round(g * (1 - tintFactor) + tintColor.g * tintFactor);

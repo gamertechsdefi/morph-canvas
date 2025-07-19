@@ -13,10 +13,7 @@ const getHeaders = (apiKey?: string): HeadersInit => {
   return apiKey ? { "X-API-Key": apiKey } : {};
 };
 
-// Type for WithoutBG API response
-interface WithoutBgResponse {
-  result: string;
-}
+
 
 // Generic API configuration interface
 interface ApiConfig<T = Buffer> {
@@ -59,9 +56,16 @@ async function removeBackground(fileBuffer: Buffer): Promise<Buffer> {
         });
       },
       isJson: true,
-      processResponse: (data: any) => {
-        if (!data?.result) throw new Error("WithoutBG API failed");
-        return Buffer.from(data.result, "base64");
+      processResponse: (data: unknown) => {
+        if (
+          typeof data === 'object' &&
+          data !== null &&
+          'result' in data &&
+          typeof (data as { result: unknown }).result === 'string'
+        ) {
+          return Buffer.from((data as { result: string }).result, "base64");
+        }
+        throw new Error("WithoutBG API failed");
       },
     },
     {
