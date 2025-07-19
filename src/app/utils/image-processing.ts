@@ -1,4 +1,4 @@
-import {Jimp} from 'jimp';
+import Jimp from 'jimp';
 
 /**
  * Removes the background from an image (placeholder implementation)
