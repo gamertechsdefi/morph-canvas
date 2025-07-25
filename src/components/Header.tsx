@@ -16,7 +16,7 @@ const Header: React.FC = () => {
         <div className="flex items-center">
           <Link href="/">
             {/* <Image src="/logo.svg" alt="Logo" width={50} height={50} /> */}
-            <h1 className='text-blue-900 font-bold text-3xl'>BASED GENE</h1>
+            <h1 className='text-blue-900 font-bold text-3xl'>MORPH CANVAS</h1>
           </Link>
         </div>
 
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             Color Effects
           </Link>
           <Link
-            href="/bg-refill"
+            href="/bg-fill"
             className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
             onClick={() => setIsMenuOpen(false)}
           >
@@ -82,6 +82,13 @@ const Header: React.FC = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             Text Effects
+          </Link>
+          <Link
+            href="/test-bg-removal"
+            className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            BG Removal Test
           </Link>
         </div>
       </div>
