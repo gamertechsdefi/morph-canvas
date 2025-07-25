@@ -17,8 +17,8 @@ export async function removeBackgroundAI(fileBuffer: Buffer): Promise<Buffer> {
     // Convert result back to buffer
     const arrayBuffer = await result.arrayBuffer();
     return Buffer.from(arrayBuffer);
-  } catch (error) {
-    console.error('AI background removal failed:', error);
+  } catch  {
+    console.error('AI background removal failed:');
     throw new Error('AI background removal failed');
   }
 }
@@ -91,7 +91,7 @@ export async function removeBackgroundRobust(fileBuffer: Buffer): Promise<Buffer
   try {
     // Try AI method first (best results)
     return await removeBackgroundAI(fileBuffer);
-  } catch (error) {
+  } catch {
     console.log("AI method failed, trying simple color-based method...");
     return await removeBackgroundSimple(fileBuffer);
   }
